@@ -186,7 +186,7 @@ def hack_default_ini(ctx, node, content):
     contents = re.sub("(?m)^file.*$", repl, content)
 
     # Replace couchjs command
-    couchjs = os.path.join(ctx['rootdir'], "src", "couch", "priv", "couchjs")
+    couchjs = os.path.join(ctx['rootdir'], "apps", "couch", "priv", "couchjs")
     mainjs = os.path.join(ctx['rootdir'], "share", "server", "main.js")
     coffeejs = os.path.join(ctx['rootdir'], "share", "server", "main-coffee.js")
 
@@ -271,7 +271,7 @@ def all_nodes_alive(ctx):
 
 @log('Start node {node}')
 def boot_node(ctx, node):
-    erl_libs = os.path.join(ctx['rootdir'], "src")
+    erl_libs = os.path.join(ctx['rootdir'], "apps")
     env = os.environ.copy()
     env["ERL_LIBS"] = os.pathsep.join([erl_libs])
 

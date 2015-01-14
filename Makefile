@@ -20,7 +20,7 @@ config.erl:
 
 couch: config.erl
 	@rebar compile
-	@cp src/couch/priv/couchjs bin/
+	@cp apps/couch/priv/couchjs bin/
 
 clean:
 	@rebar -r clean
@@ -75,4 +75,4 @@ fauxton: share/www
 
 share/www:
 	@echo "Building Fauxton"
-	@cd src/fauxton && npm install && grunt couchdb
+	@cd apps/fauxton && npm install && grunt couchdb
