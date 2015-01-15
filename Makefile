@@ -12,21 +12,20 @@
 
 all: couch fauxton
 
-config.erl:
-	@echo "Apache CouchDB has not been configured."
-	@echo "Try \"./configure -h\" for help."
-	@echo
-	@false
+include install.mk
 
-couch: config.erl
+.PHONY = \
+	all couch clean check dist distlcean devclean install \
+	docker-image docker-start docker-stop eunit javascript fauxton
+
+couch:
 	@rebar compile
-	@cp apps/couch/priv/couchjs bin/
+	@cp apps/couch_store/priv/couchjs bin/
 
 clean:
 	@rebar -r clean
 
 check: javascript eunit
-
 
 dist: all
 	@rm -rf rel/couchdb
@@ -39,7 +38,6 @@ distclean: clean
 devclean:
 	@rm -rf dev/lib/*/data
 
-include install.mk
 install: dist
 	@mkdir -p $(prefix)
 	@cp -R rel/couchdb/* $(prefix)
