@@ -1,0 +1,7 @@
+{application, couch_db, [
+    {description, "Apache CouchDB"},
+    {vsn, git},
+    {applications, [
+        couch_httpd
+    ]}
+]}.
